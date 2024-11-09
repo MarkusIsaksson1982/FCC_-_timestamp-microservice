@@ -11,29 +11,30 @@ app.get('/api/:date?', (req, res) => {
   const dateString = req.params.date;
   let date;
 
-  // Handle empty date parameter
+  // Handle case where no date is provided (use current date)
   if (!dateString) {
     date = new Date();
   } 
-  // Check if dateString is a valid Unix timestamp
+  // Handle Unix timestamp in milliseconds
   else if (/^\d+$/.test(dateString)) {
     const timestamp = parseInt(dateString);
-    date = new Date(timestamp > 10000000000 ? timestamp : timestamp * 1000); // Handle seconds vs milliseconds
+    date = new Date(timestamp); // JavaScript Date can handle milliseconds directly
   } 
-  // Handle standard date format
+  // Handle standard date string
   else {
     date = new Date(dateString);
   }
 
-  // Validate the date object
+  // Check if the date is valid
   if (isNaN(date.getTime())) {
-    res.json({ error: "Invalid Date" });
-  } else {
-    res.json({
-      unix: date.getTime(),
-      utc: date.toUTCString()
-    });
+    return res.json({ error: "Invalid Date" });
   }
+
+  // Return the response in the required format
+  res.json({
+    unix: date.getTime(),
+    utc: date.toUTCString()
+  });
 });
 
 app.get('/', (req, res) => {
