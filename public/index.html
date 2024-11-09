@@ -1,27 +1,24 @@
+<!-- I have utilized Perplexity as a resource for guidance and learning throughout this project. My approach reflects the growing trend of modern developers using AI tools to enhance their coding processes. However, all the final code presented here is my own work, based on own independently thought out prompts and without copying prompts or code from others other than snippets. I believe this practice aligns with the principles of academic honesty, as it emphasizes learning and using technology responsibly. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Timestamp Microservice</title>
-  <link href="(add later)" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>Timestamp Microservice</h1>
     <hr>
-    <h2>Example Usage:</h2>
+    <p>Use the API endpoints to retrieve date information:</p>
     <ul>
-      <li><a href="/api/2015-12-25">[project url]/api/2015-12-25</a></li>
-      <li><a href="/api/1451001600000">[project url]/api/1451001600000</a></li>
+      <li><code>/api/2015-12-25</code> - Date in YYYY-MM-DD format</li>
+      <li><code>/api/1451001600000</code> - Date in Unix timestamp format (milliseconds)</li>
+      <li><code>/api/</code> - Current date and time</li>
     </ul>
-    <h2>Example Output:</h2>
-    <div class="output-box">
-      <pre><code id="output">{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code></pre>
-      <button id="copyBtn">Copy</button>
-    </div>
+    <p>Each endpoint returns a JSON response with Unix and UTC timestamp data.</p>
   </div>
-  <script src="script.js"></script>
 </body>
 </html>
