@@ -7,26 +7,21 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-// Timestamp API endpoint
 app.get('/api/:date?', (req, res) => {
   const dateString = req.params.date;
   let date;
 
-  // If no date is provided, use the current date
   if (!dateString) {
     date = new Date();
   } 
-  // Handle Unix timestamps (seconds or milliseconds)
   else if (/^\d+$/.test(dateString)) {
     const timestamp = parseInt(dateString);
     date = new Date(timestamp > 10000000000 ? timestamp : timestamp * 1000); // Handle seconds vs. milliseconds
   } 
-  // Handle standard date strings
   else {
     date = new Date(dateString);
   }
 
-  // Check if the date is valid
   if (isNaN(date.getTime())) {
     res.json({ error: "Invalid Date" });
   } else {
@@ -37,7 +32,6 @@ app.get('/api/:date?', (req, res) => {
   }
 });
 
-// Serve a static HTML page for demonstration purposes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
